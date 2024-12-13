@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-color-purple {
+  @apply bg-gradient-to-r from-indigo-500 to-purple-700;
+}
+.bg-color-pur-to-red {
+  @apply bg-gradient-to-r from-purple-400 via-pink-500 to-red-500;
+}
+
+.bg-purple-to-pink {
+  @apply bg-gradient-to-r from-purple-400 to-pink-500;
+}
+.title-text-yellow {
+  @apply text-4xl font-extrabold text-yellow-400;
+}
+
+.input-style {
+  @apply focus:outline-none focus:ring-2 focus:ring-purple-500 bg-opacity-50 text-blue-900;
+}
+
+.title-text-posts {
+  @apply text-xl font-semibold mb-2 text-yellow-400;
+}
+
