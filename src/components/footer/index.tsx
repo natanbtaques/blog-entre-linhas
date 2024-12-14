@@ -5,9 +5,9 @@ import FooterIcons from "./footerIcons";
 const Footer = () => {
     return (
         <footer className="bg-color-pur-to-red text-white py-6 shadow-lg">
-            <div className="container mx-auto flex justify-center items-center ">
+            <div className="container mx-auto flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
                 {/* Informações de copyright */}
-                <p className="text-sm  pr-10">
+                <p className="text-sm md:pr-10">
                     &copy; {new Date().getFullYear()} Ink & Ideas. All rights reserved.
                 </p>
 

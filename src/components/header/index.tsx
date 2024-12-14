@@ -3,7 +3,7 @@ import HeaderButton from './headerButton';
 
 const Header = () => {
     return (
-        <header className="bg-color-pur-to-red text-white p-6 shadow-lg">
+        <header className="bg-color-pur-to-red text-white p-6 shadow-lg sticky top-0">
             <div className="container mx-auto flex justify-between items-center">
                 {/* Título do Blog */}
                 <h1 className="text-4xl font-extrabold text-white">
@@ -14,7 +14,7 @@ const Header = () => {
                 <nav>
                     <ul className="flex space-x-6">
                         <li>
-                            <HeaderButton button={{ title: 'Home', ref: '/homePage' }} />
+                            <HeaderButton button={{ title: 'Home', ref: '/home' }} />
                         </li>
                         <li>
                             <HeaderButton button={{ title: 'Posts', ref: '/posts' }} />
