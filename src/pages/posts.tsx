@@ -12,7 +12,7 @@ export default function PostsPage({ posts }: PostsPageProps) {
       {/* Container principal */}
       <div className="container mx-auto px-6 py-8">
         <h1 className="text-4xl font-extrabold text-center mb-8 tracking-wide">
-          Todos os Posts do <span className="text-yellow-400">Entre-Linhas</span>
+          All Posts from <span className="text-yellow-400">Ink & Ideas</span>
         </h1>
 
         <hr className="w-24 border-t-2 border-yellow-400 mb-8 mx-auto" />
