@@ -11,12 +11,12 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/homePage.tsx", "src/pages/posts.tsx", "src/pages/api/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/homePage.tsx", "src/pages/posts.tsx", "src/pages/api/route.js", "src/tests/NewPostPage.test.tsx"],
   "exclude": ["node_modules"]
 }

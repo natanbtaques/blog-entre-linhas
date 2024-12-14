@@ -20,7 +20,7 @@ const NewPostPage = () => {
             <div className="bg-opacity-50 bg-black p-8 rounded-lg shadow-xl w-full max-w-3xl">
                 <h1 className="title-text-yellow mb-6 text-center">Create New Post</h1>
                 {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" data-testid="new-post-form">
                     <div>
                         <input
                             type="number"
