@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 interface HeaderButtonProps {
     button: {
@@ -9,11 +10,11 @@ interface HeaderButtonProps {
 
 const HeaderButton: React.FC<HeaderButtonProps> = ({ button }) => {
     return (
-        <a
-            href={button.ref}
-            className="hover:text-gray-200 transition-colors duration-300 font-bold">
-            {button.title}
-        </a>
+        <Link href={button.ref} legacyBehavior>
+            <a className="hover:text-gray-200 transition-colors duration-300 font-bold">
+                {button.title}
+            </a>
+        </Link>
     );
 };
 

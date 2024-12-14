@@ -18,6 +18,15 @@ export async function fetchPosts() {
     const data = await res.json();
     return data; // Retorna o post adicionado
   }
+
+  async function deletePost(postId: number) {
+    const res = await fetch(`https://dummyjson.com/posts/${postId}`, {
+      method: "DELETE",
+    });
+  
+    const data = await res.json();
+    return data; // Returns the deleted post details
+  }
   
   // Handler para a rota /api/posts
   export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -34,8 +43,20 @@ export async function fetchPosts() {
   
       // Retorna os posts existentes
       return res.status(200).json(posts);
+    } 
+    else if (req.method === 'DELETE') {
+      // Delete a post
+      const { id } = req.query; // Get the post ID from the query params
+      if (!id) {
+        return res.status(400).json({ message: "Post ID is required" });
+      }
+  
+      const deletedPost = await deletePost(Number(id));
+      return res.status(200).json(deletedPost);
     } else {
-      // Se o método não for nem GET nem POST, retorna um erro
-      return res.status(405).json({ message: 'Método não permitido' });
+      // If the method is neither GET, POST, nor DELETE, return an error
+      return res.status(405).json({ message: 'Method not allowed' });
     }
   }
+
+  

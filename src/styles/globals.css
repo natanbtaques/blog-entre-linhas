@@ -42,3 +42,8 @@ body {
   @apply text-xl font-semibold mb-2 text-yellow-400;
 }
 
+.hoverButton {
+  :hover {
+    @apply brightness-75;
+  }
+}

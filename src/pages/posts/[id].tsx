@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { fetchPosts } from "../api";
 import { Post } from "../../types/post";
+import { deletePost } from "../api/deletePost";
 
 
 interface PostDetailProps {
@@ -43,18 +44,34 @@ export default function PostDetail({ post }: PostDetailProps) {
                         <p>No tags available</p>
                     )}
                 </div>
+                <div>{/* Botões de Ação */}
+                    <div className="flex justify-center mt-8 space-x-4 mb-10">
+                        <a
+                            href="/posts"
+                            className="bg-color-purple text-white px-6 py-3 rounded-full text-lg font-semibold"
+                        >
+                            Back to posts
+                        </a>
+                        <button
+                            onClick={async () => {
+                                const success = await deletePost(post.id);
+                                if (success) {
+                                    window.location.href = "/posts";
+                                } else {
+                                    alert("Failed to delete the post");
+                                }
+                            }}
+                            className="bg-color-pur-to-red  text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-color-pur-to-red  "
+                        >
+                            Delete Post
+                        </button>
+                    </div>
 
-                {/* Botão de Voltar */}
-                <div className="flex justify-center mt-8">
-                    <a
-                        href="/posts"
-                        className="bg-color-purple mb-10 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-teal-600 transition-all"
-                    >
-                        Back to posts
-                    </a>
+
                 </div>
-            </div>
-        </div >
+            </div >
+        </div>
+
     );
 }
 
