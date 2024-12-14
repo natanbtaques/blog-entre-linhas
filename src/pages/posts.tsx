@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { fetchPosts } from '../pages/api/route';
+import { fetchPosts } from './api'
 import { Post } from '../types/post';
 
 interface PostsPageProps {

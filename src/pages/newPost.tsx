@@ -1,40 +1,30 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import { handlePosts } from "./api/handlePost";
 
 const NewPostPage = () => {
-    const [userId, setUserId] = useState('');
-    const [title, setTitle] = useState('');
-    const [tags, setTags] = useState('');
-    const [content, setContent] = useState('');
-    const router = useRouter();
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Formulário enviado');
-        console.log('Dados atuais:', { userId, title, tags, content });
-        try {
-            // Envia o novo post para a API
-            await axios.post('/api/posts', { userId, title, tags, content });
-
-            // Redireciona para a página de posts
-            router.push('/posts');
-        } catch (error) {
-            console.error('Erro ao criar o post:', error);
-        }
-    };
+    const {
+        userId,
+        setUserId,
+        title,
+        setTitle,
+        tags,
+        setTags,
+        content,
+        setContent,
+        loading,
+        error,
+        handleSubmit,
+    } = handlePosts();
 
     return (
-        <div className=" bg-color-purple min-h-screen flex items-center justify-center">
+        <div className="bg-color-purple min-h-screen flex items-center justify-center">
             <div className="bg-opacity-50 bg-black p-8 rounded-lg shadow-xl w-full max-w-3xl">
-                <h1 className="title-text-yellow mb-6 text-center">
-                    Create New Post
-                </h1>
+                <h1 className="title-text-yellow mb-6 text-center">Create New Post</h1>
+                {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <input
-                            type="text"
-                            placeholder="id"
+                            type="number"
+                            placeholder="User ID"
                             className="border p-3 rounded-lg w-full input-style"
                             value={userId}
                             onChange={(e) => setUserId(e.target.value)}
@@ -69,8 +59,9 @@ const NewPostPage = () => {
                     <button
                         type="submit"
                         className="w-full bg-purple-to-pink text-white p-3 rounded-lg hover:from-purple-500 hover:to-pink-600 transition-colors duration-300"
+                        disabled={loading} // Desabilita o botão enquanto está carregando
                     >
-                        Submit
+                        {loading ? 'Enviando...' : 'Submit'}
                     </button>
                 </form>
             </div>

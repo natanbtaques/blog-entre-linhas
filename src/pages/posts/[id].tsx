@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { fetchPosts } from "../../pages/api/route";
+import { fetchPosts } from "../api";
 import { Post } from "../../types/post";
 
 
@@ -9,7 +9,7 @@ interface PostDetailProps {
 
 export default function PostDetail({ post }: PostDetailProps) {
     return (
-        <div className="min-h-screen flex flex-col items-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 py-12">
+        <div className="min-h-screen flex flex-col items-center bg-color-pur-to-red py-12">
             <div className="container mx-auto px-6 sm:px-12 md:px-24 bg-white rounded-lg shadow-lg max-w-3xl">
                 {/* Título do Post */}
                 <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-4 mt-10">{post.title}</h1>
@@ -20,9 +20,15 @@ export default function PostDetail({ post }: PostDetailProps) {
                 <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
                     <p>{post.body}</p>
                 </div>
-                <div className="text-center mb-6 text-sm text-gray-500">
-                    <span>{post.views} visualizações</span>
+                <div className="flex justify-center space-x-8 my-6">
+                    <div className="text-center text-sm text-gray-500">
+                        <span>{post.views} visualizações</span>
+                    </div>
+                    <div className="text-center text-sm text-gray-500">
+                        <span>User Id: {post.id}</span>
+                    </div>
                 </div>
+
                 <div className="text-center mb-6 text-sm text-gray-500">
 
                     {post.tags && post.tags.length > 0 ? (
@@ -44,7 +50,7 @@ export default function PostDetail({ post }: PostDetailProps) {
                         href="/posts"
                         className="bg-color-purple mb-10 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-teal-600 transition-all"
                     >
-                        Voltar para Posts
+                        Back to posts
                     </a>
                 </div>
             </div>
