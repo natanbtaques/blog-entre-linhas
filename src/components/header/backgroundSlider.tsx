@@ -18,7 +18,7 @@ const BackgroundSlider = () => {
 
   return (
     <div
-      className="fixed inset-0 w-screen h-screen bg-cover bg-center transition-all duration-1000"
+      className="fixed inset-0 w-screen h-screen bg-cover bg-center transition-all "
       style={{
         backgroundImage: `url(${images[currentImageIndex]})`,
         opacity: 0.8, // Adjust the opacity to make the image a bit faded

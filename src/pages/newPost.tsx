@@ -1,6 +1,7 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Estilos do Toastify
 import { handlePosts } from "./api/handlePost";
+import { useRouter } from "next/router";
 
 const NewPostPage = () => {
     const {
@@ -16,20 +17,27 @@ const NewPostPage = () => {
         error,
         handleSubmit,
     } = handlePosts();
-
+    const router = useRouter(); // Usar router para redirecionamento
     const handleSubmitWithToast = async (e: React.FormEvent) => {
-        const result = await handleSubmit(e); // `handleSubmit` agora retorna sucesso ou falha.
+
+        const result = await handleSubmit(e); // `handleSubmit` agora retorna sucesso ou falha
+
 
         if (result.success) {
             toast.success("Post criado com sucesso!", {
                 position: "top-right",
-                autoClose: 3000,
+                autoClose: 7000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
             });
+
+            setTimeout(() => {
+                // Redireciona para a página de posts após o sucesso
+                router.push("/posts");
+            }, 5000); // Atraso para mostrar o toast antes de redirecionar
         } else {
             toast.error(result.message || "Erro ao criar o post.", {
                 position: "top-right",

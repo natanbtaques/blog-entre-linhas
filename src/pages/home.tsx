@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import BackgroundSlider from '../components/header/backgroundSlider'; // Certifique-se de ajustar o caminho, dependendo da estrutura do projeto
+import BackgroundSlider from '../components/header/backgroundSlider';
 
 export default function HomePage() {
   return (
