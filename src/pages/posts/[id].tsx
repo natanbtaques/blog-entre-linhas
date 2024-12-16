@@ -13,7 +13,7 @@ export default function PostDetail({ post }: PostDetailProps) {
             className="min-h-screen flex flex-col items-center bg-[url('/images/image3.jpg')] bg-cover bg-center bg-fixed"
         >
             <div className="min-h-screen flex flex-col items-center py-12">
-                <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 bg-white rounded-lg shadow-lg max-w-sm sm:max-w-md md:max-w-lg lg:max-w-3xl">
+                <div className="container mx-auto px-4 sm:px-6 sm:mx-4 md:px-12 lg:px-24 bg-white rounded-lg shadow-lg max-w-sm sm:max-w-sm md:max-w-lg lg:max-w-4xl">
                     {/* Título do Post */}
                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-4 mt-6 sm:mt-10">
                         {post.title}
