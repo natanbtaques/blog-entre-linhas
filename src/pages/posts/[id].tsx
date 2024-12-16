@@ -1,13 +1,46 @@
+import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { fetchPosts } from "../api";
 import { Post } from "../../types/post";
-import { deletePost } from "../api/deletePost";
+import { deletePost } from "../api/deletePost"; // Importe a função de deleção
+import "react-toastify/dist/ReactToastify.css"; // Estilos do Toastify
+import { ToastContainer, toast } from "react-toastify";
 
 interface PostDetailProps {
     post: Post;
 }
 
-export default function PostDetail({ post }: PostDetailProps) {
+const PostDetail = ({ post }: PostDetailProps) => {
+    const router = useRouter(); // Usar router para redirecionamento
+    const handleDeleteWithToast = async () => {
+        const result = await deletePost(post.id); // `deletePost` agora retorna sucesso ou falha
+
+        if (result.success) {
+            toast.success("Post deletado com sucesso!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setTimeout(() => {
+                router.push("/posts"); // Redireciona para a página de posts após a exclusão
+            }, 3000); // Atraso para mostrar o toast antes de redirecionar
+        } else {
+            toast.error(result.message || "Erro ao deletar o post.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+
     return (
         <div
             className="min-h-screen flex flex-col items-center bg-[url('/images/image3.jpg')] bg-cover bg-center bg-fixed"
@@ -60,14 +93,7 @@ export default function PostDetail({ post }: PostDetailProps) {
                                 Back to posts
                             </a>
                             <button
-                                onClick={async () => {
-                                    const success = await deletePost(post.id);
-                                    if (success) {
-                                        window.location.href = "/posts";
-                                    } else {
-                                        alert("Failed to delete the post");
-                                    }
-                                }}
+                                onClick={handleDeleteWithToast} // Chama a função de deletar com toast
                                 className="color-2 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-lg font-semibold hover:bg-color-pur-to-red"
                             >
                                 Delete Post
@@ -76,9 +102,11 @@ export default function PostDetail({ post }: PostDetailProps) {
                     </div>
                 </div>
             </div>
+
+            <ToastContainer /> {/* Necessário para exibir os toasts */}
         </div>
     );
-}
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const posts = await fetchPosts();
@@ -103,3 +131,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         },
     };
 };
+
+export default PostDetail;

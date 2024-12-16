@@ -20,18 +20,6 @@ body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
-.bg-color-blu-to-green {
-  background-image: linear-gradient(to right, #006494, #247ba0);
-}
-
-.bg-color-pur-to-red {
-  background-image: linear-gradient(to right, #247ba9, #1b98e0);
-}
-
-.bg-purple-to-pink {
-  background-image: linear-gradient(to right, #a78bfa, #ec4899);
-}
-
 .title-text {
   font-size: 2.25rem; /* text-4xl */
   font-weight: 800; /* font-extrabold */

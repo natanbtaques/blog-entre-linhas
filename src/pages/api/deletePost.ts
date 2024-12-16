@@ -1,5 +1,5 @@
 // services/postService.ts
-export async function deletePost(postId: number): Promise<boolean> {
+export async function deletePost(postId: number): Promise<{ success: boolean, message?: string }> {
     try {
         const response = await fetch(`/api/?id=${postId}`, {
             method: 'DELETE',
@@ -8,12 +8,12 @@ export async function deletePost(postId: number): Promise<boolean> {
         if (!response.ok) {
             const errorData = await response.json();
             console.error('Error deleting post:', errorData.message);
-            return false;
+            return { success: false, message: errorData.message || 'Erro ao excluir o post.' };
         }
 
-        return true; // Retorna sucesso
+        return { success: true };
     } catch (error) {
         console.error('An error occurred while deleting the post:', error);
-        return false; // Retorna falha
+        return { success: false, message: 'Erro ao tentar excluir o post. Tente novamente mais tarde.' };
     }
 }
