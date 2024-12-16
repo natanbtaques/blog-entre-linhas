@@ -4,7 +4,7 @@ import FooterIcons from "./footerIcons";
 
 const Footer = () => {
     return (
-        <footer className="bg-color-pur-to-red text-white py-6 shadow-lg">
+        <footer className="color-2 text-white py-6 shadow-lg">
             <div className="container mx-auto flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
                 {/* Informações de copyright */}
                 <p className="text-sm md:pr-10">

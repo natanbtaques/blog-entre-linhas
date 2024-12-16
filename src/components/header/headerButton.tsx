@@ -11,7 +11,7 @@ interface HeaderButtonProps {
 const HeaderButton: React.FC<HeaderButtonProps> = ({ button }) => {
     return (
         <Link href={button.ref} legacyBehavior>
-            <a className="hover:text-gray-200 transition-colors duration-300 font-bold">
+            <a className="hover:text-blue-950 transition-colors duration-300 font-bold ">
                 {button.title}
             </a>
         </Link>

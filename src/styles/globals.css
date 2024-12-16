@@ -17,33 +17,69 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
-.bg-color-purple {
-  @apply bg-gradient-to-r from-indigo-500 to-purple-700;
+.bg-color-blu-to-green {
+  background-image: linear-gradient(to right, #006494, #247ba0);
 }
+
 .bg-color-pur-to-red {
-  @apply bg-gradient-to-r from-purple-400 via-pink-500 to-red-500;
+  background-image: linear-gradient(to right, #247ba9, #1b98e0);
 }
 
 .bg-purple-to-pink {
-  @apply bg-gradient-to-r from-purple-400 to-pink-500;
+  background-image: linear-gradient(to right, #a78bfa, #ec4899);
 }
-.title-text-yellow {
-  @apply text-4xl font-extrabold text-yellow-400;
+
+.title-text {
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 800; /* font-extrabold */
+  color: #e8f1f2; /* text-yellow-400 */
 }
 
 .input-style {
-  @apply focus:outline-none focus:ring-2 focus:ring-purple-500 bg-opacity-50 text-blue-900;
+  outline: none; /* focus:outline-none */
+  box-shadow: 0 0 0 2px #1b98e0; /* focus:ring-2 focus:ring-purple-500 */
+  background-color: rgba(232, 241, 242, 0.5); /* bg-opacity-50 */
+  color: #13293d; /* text-blue-900 */
+  background-color: #e8f1f2;
 }
 
 .title-text-posts {
-  @apply text-xl font-semibold mb-2 text-yellow-400;
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 0.5rem; /* mb-2 */
+  color: #13293d; /* text-yellow-400 */
 }
 
-.hoverButton {
-  :hover {
-    @apply brightness-75;
-  }
+.dark-blog {
+  background-color: #13293d;
+}
+
+.white-blog {
+  background-color: #e8f1f2;
+}
+.white-text-blog {
+  color: #e8f1f2;
+}
+
+.dark-text-blog {
+  color: #13293d;
+}
+
+.color-1 {
+  background-color: rgb(150, 75, 0);
+}
+.color-2 {
+  background-color: rgb(176, 120, 64);
+}
+.color-3 {
+  background-color: rgb(203, 165, 128);
+}
+.color-4 {
+  background-color: rgb(229, 210, 191);
+}
+.color-5 {
+  background-color: rgb(255, 255, 255);
 }

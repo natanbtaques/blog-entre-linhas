@@ -1,14 +1,15 @@
 import 'tailwindcss/tailwind.css';
 import HeaderButton from './headerButton';
+import Image from 'next/image';
 
 const Header = () => {
     return (
-        <header className="bg-color-pur-to-red text-white p-6 shadow-lg sticky top-0">
+        <header className="color-2 text-white p-6 shadow-lg sticky top-0">
             <div className="container mx-auto flex justify-between items-center">
                 {/* Título do Blog */}
-                <h1 className="text-4xl font-extrabold text-white">
-                    Blog Ink & Ideas
-                </h1>
+
+                <Image src="/logo.png" alt="Blog Logo" width={80} height={50} />
+
 
                 {/* Navegação */}
                 <nav>
