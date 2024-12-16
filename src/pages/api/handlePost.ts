@@ -14,7 +14,7 @@ export const handlePosts = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validação simples
+        // Validation
         if (!userId || !title || !tags || !content) {
             setError('Por favor, preencha todos os campos.');
             return { success: false, message: 'Campos obrigatórios faltando.' };
@@ -29,7 +29,7 @@ export const handlePosts = () => {
         setLoading(true);
 
         try {
-            // Envia os dados para a API
+            // Send data to the API
             await axios.post('/api', {
                 userId: parseInt(userId),
                 title,
@@ -38,7 +38,6 @@ export const handlePosts = () => {
             });
 
             return { success: true };
-            
         } catch (err) {
             console.error('Erro ao criar o post:', err);
             setError('Ocorreu um erro ao criar o post.');

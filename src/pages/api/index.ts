@@ -45,7 +45,7 @@ export async function fetchPosts() {
       return res.status(200).json(posts);
     } 
     else if (req.method === 'DELETE') {
-      // Delete a post
+      // Delete do post
       const { id } = req.query; // Get the post ID from the query params
       if (!id) {
         return res.status(400).json({ message: "Post ID is required" });

@@ -2,6 +2,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Estilos do Toastify
 import { handlePosts } from "./api/handlePost";
 import { useRouter } from "next/router";
+import { act } from "react";
 
 const NewPostPage = () => {
     const {
@@ -18,37 +19,39 @@ const NewPostPage = () => {
         handleSubmit,
     } = handlePosts();
     const router = useRouter(); // Usar router para redirecionamento
+
+
     const handleSubmitWithToast = async (e: React.FormEvent) => {
+        const result = await handleSubmit(e); // `handleSubmit` now returns success or failure
 
-        const result = await handleSubmit(e); // `handleSubmit` agora retorna sucesso ou falha
+        act(() => {
+            if (result && result.success) {
+                toast.success("Post criado com sucesso!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
 
-
-        if (result.success) {
-            toast.success("Post criado com sucesso!", {
-                position: "top-right",
-                autoClose: 7000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-
-            setTimeout(() => {
-                // Redireciona para a página de posts após o sucesso
-                router.push("/posts");
-            }, 5000); // Atraso para mostrar o toast antes de redirecionar
-        } else {
-            toast.error(result.message || "Erro ao criar o post.", {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
+                // Add a delay to ensure the toast appears before navigating
+                setTimeout(() => {
+                    router.push("/posts");
+                }, 3000); // Delay for the toast to be visible before redirecting
+            } else {
+                toast.error(result?.message || "Erro ao criar o post.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        });
     };
 
     return (
@@ -72,7 +75,7 @@ const NewPostPage = () => {
                 <div className="dark-blog p-4 sm:p-8 rounded-lg shadow-xl w-full">
                     <h1 className="title-text mb-4 sm:mb-6 text-center text-lg sm:text-2xl">Create New Post</h1>
 
-                    {/* Fallback para mensagens de erro */}
+                    {/* Mensagem de erro */}
                     {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
 
                     <form
